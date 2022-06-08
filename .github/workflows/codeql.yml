@@ -67,7 +67,7 @@ jobs:
         
     - name: build
       run: |
-        mvn clean install
+        mvn clean install -Dmaven.test.skip=true
     
 
     # ℹ️ Command-line programs to run using the OS shell.
