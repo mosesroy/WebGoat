@@ -81,7 +81,7 @@ jobs:
           args: >
             --enableRetired
             --enableExperimental
-            --nvdApiKey ${{NVD_API_KEY}}
+            --nvdApiKey ${{36557e89-19ba-4750-b69f-848690cbebec}}
         continue-on-error: true
 
       - name: Upload Dependency Check results
