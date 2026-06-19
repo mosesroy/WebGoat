@@ -60,6 +60,18 @@ jobs:
           name: semgrep-results
           path: semgrep-results.sarif
 
+      - name: Debug NVD Key
+        run: |
+          if [ -z "${{ secrets.NVD_API_KEY }}" ]; then
+            echo "NVD_API_KEY is EMPTY"
+          else
+            echo "NVD_API_KEY is SET and has length: ${#NVD_KEY}"
+          fi
+        env:
+          NVD_KEY: ${{ secrets.NVD_API_KEY }}
+
+
+
 # ─────────────────────────────────────────
 # STAGE 3: SCA - OWASP Dependency Check
 # ─────────────────────────────────────────
