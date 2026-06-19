@@ -73,7 +73,7 @@ jobs:
 
 
 # ─────────────────────────────────────────
-# STAGE 3: SCA - OWASP Dependency Check
+# STAGE 3: SCA - OWASP Dependency Checks
 # ─────────────────────────────────────────
   sca-scan:
     name: SCA (OWASP Dependency Check)
