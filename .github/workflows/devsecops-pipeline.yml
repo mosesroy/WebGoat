@@ -9,7 +9,7 @@ on:
 jobs:
 
 # ─────────────────────────────────────────
-# STAGE 1: Secrets Detection with Gitleaks
+# STAGE 1: Secrets Detection with Gitleaksa
 # ─────────────────────────────────────────
   secrets-scan:
     name: Secrets Detection (Gitleaks)
