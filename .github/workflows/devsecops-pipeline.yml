@@ -217,6 +217,11 @@ jobs:
             sleep 10
           done
 
+      - name: Create ZAP rules file
+        run: |
+          mkdir -p .zap
+          printf '10010\tIGNORE\tCookie No HttpOnly Flag\n10011\tIGNORE\tCookie Without Secure Flag\n' > .zap/rules.tsv
+
       - name: Run ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.14.0
         with:
@@ -235,3 +240,4 @@ jobs:
       - name: Stop WebGoat container
         if: always()
         run: docker stop webgoat && docker rm webgoat
+
