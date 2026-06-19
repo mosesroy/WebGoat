@@ -19,9 +19,32 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # full git history so Gitleaks can scan all commits, not just latest
+          fetch-depth: 0
 
       - name: Run Gitleaks
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+# ─────────────────────────────────────────
+# STAGE 2: SAST with Semgrep
+# ─────────────────────────────────────────
+  sast-scan:
+    name: SAST (Semgrep)
+    runs-on: ubuntu-latest
+    needs: secrets-scan        # only runs if secrets-scan passes
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Semgrep
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: >-
+            p/java
+            p/owasp-top-ten
+            p/secrets
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+        continue-on-error: true  # soft fail — findings reported but pipeline continues
